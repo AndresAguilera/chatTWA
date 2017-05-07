@@ -34,7 +34,7 @@ public final class WebServer {
      */
     public static void main(String[] args) throws IOException {
 
-        log.debug("Starting ..");
+        log.debug("Starting ...");
 
         // Servidor en el puerto PORT
         final ServerSocket serverSocket = new ServerSocket(PORT);
@@ -68,6 +68,7 @@ public final class WebServer {
                 log.debug("Line {}: {}", ++n, line);
 
                 // Guardo la peticion de la primera linea
+                request = line;
                 if (n == 1) {
                     request = line;
                 }
@@ -83,7 +84,7 @@ public final class WebServer {
 
             // Si llego la orden de shutdown ..
             if (StringUtils.contains(request, "shutdown")) {
-
+                log.debug("shutdown");
                 // .. Cierro el servicio
                 socket.close();
                 serverSocket.close();

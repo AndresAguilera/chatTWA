@@ -1,11 +1,20 @@
+import com.google.common.io.Files;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.LineIterator;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.charset.Charset;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * @author Diego Urrutia Astorga <durrutia@ucn.cl>
@@ -30,7 +39,7 @@ public class WebServerThreads {
      */
     public static void main(String[] args) throws IOException {
 
-        log.debug("Starting ..");
+        log.debug("Starting ...");
 
         final ExecutorService executor = Executors.newFixedThreadPool(8);
 
@@ -53,4 +62,19 @@ public class WebServerThreads {
 
         }
     }
+
+//    private static void processRequest(OutputStream outputStream, String request) throws IOException {
+//        final String curDir = System.getProperty("user.dir");
+//        final String path = curDir + "/index.html";
+//        final File file = new File(path);
+//        final String html = Files.toString(file,UTF_8);
+//
+//        final String path2 = curDir + "/chatlog.html";
+//        final File file2 = new File(path2);
+//        final String chatlog = Files.toString(file2,UTF_8);
+//
+//        final String index = StringUtils.replace(html, "hereGoesChatLog", chatlog);
+//
+//        IOUtils.write(index + "\r\n", outputStream, Charset.defaultCharset());
+//    }
 }
